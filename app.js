@@ -23,15 +23,16 @@ app.use(views(__dirname + '/views', {
 }));
 
 // logger
-app.use(async (ctx, next) => {
+app.use((ctx, next) => {
   const start = new Date();
-  await next();
-  const ms = new Date() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+  return next().then(() => {
+    const ms = new Date() - start;
+    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+  });
 });
 
-router.use('/', index.routes(), index.allowedMethods());
-router.use('/users', users.routes(), users.allowedMethods());
+router.use('/', index.routes());
+router.use('/users', users.routes());
 
 app.use(router.routes(), router.allowedMethods());
 // response
