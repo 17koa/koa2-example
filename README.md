@@ -9,3 +9,12 @@
   "koa-router": "^7.0.0",
   "koa-views": "^5.0.1"
 ```
+
+## 语法提示
+
+typings install node koa --ambient --save
+
+```
+/// <reference path="typings/main/ambient/node/index.d.ts"/>
+/// <reference path="typings/main/ambient/koa/index.d.ts"/>
+```
